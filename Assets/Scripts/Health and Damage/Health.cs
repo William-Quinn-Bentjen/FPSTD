@@ -12,7 +12,7 @@ public class Health : MonoBehaviour, IDamageable {
     public void TakeDamage(float amount)
     {
         HP -= amount;
-        if (HP < maxHP)
+        if (HP < minHP)
         {
             Death.Invoke();
         }

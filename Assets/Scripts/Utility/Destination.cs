@@ -5,7 +5,7 @@ using UnityEngine;
 public class Destination : MonoBehaviour {
     public static Destination instance;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		if (instance == null)
         {
             instance = this;

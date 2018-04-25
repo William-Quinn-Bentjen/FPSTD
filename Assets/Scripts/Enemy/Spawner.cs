@@ -50,7 +50,7 @@ public class Spawner : MonoBehaviour {
         return new List<GameObject>();
     }
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         WaveManager.EnemySpawner = this;
 	}
 	
