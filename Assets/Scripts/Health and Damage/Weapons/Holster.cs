@@ -32,14 +32,15 @@ public class Holster : MonoBehaviour {
         Selected.Modle.gameObject.SetActive(false);
     }
     // Use this for initialization
-    void Start () {
+    void Awake () {
+        GunController.GunHolster = this;
         if (Selected != null)
         {
             SelectWeapon(Selected);
         }
-        GunController.GunHolster = this;
+        //GunController.GunHolster = this;
         //SelectWeapon(Weapons[0]);
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {

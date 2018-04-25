@@ -46,6 +46,7 @@ public class Shotgun : Gun
     public override void Reload()
     {
         //base.Reload();
+        
         if (InMag < MagSize)
         {
             InMag++;
@@ -57,6 +58,7 @@ public class Shotgun : Gun
             {
                 StartReload();
             }
+            OnAmmoChange.Invoke(TypeOfWeapon, InMag, MagSize);
         }
     }
     public override void TriggerDown()
@@ -69,11 +71,6 @@ public class Shotgun : Gun
     }
     void FixedUpdate()
     {
-        if (Input.GetButton("Fire1"))
-        {
-            TriggerDown();
-        }
-        //TriggerDown();
         TBSTimer -= Time.deltaTime;
         //Reload logic
         if (Reloading)
@@ -84,6 +81,10 @@ public class Shotgun : Gun
                 Reload();
             }
         }
+    }
+    void Start()
+    {
+        OnAmmoChange.Invoke(TypeOfWeapon, InMag, MagSize);
     }
     public void OnDrawGizmos()
     {

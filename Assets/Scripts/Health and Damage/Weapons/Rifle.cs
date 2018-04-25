@@ -50,4 +50,8 @@ public class Rifle : Gun
             }
         }
     }
+    void Start()
+    {
+        OnAmmoChange.Invoke(TypeOfWeapon, InMag, MagSize);
+    }
 }

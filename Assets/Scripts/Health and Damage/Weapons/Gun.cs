@@ -12,13 +12,17 @@ public abstract class Gun : MonoBehaviour {
     public float ReloadTimer;
     public bool Reloading = false;
     public bool ReloadAfterLastShot = true;
+    public WeaponType TypeOfWeapon;
     public GameObject Modle;
     public Animation FireAnimation;
+    public delegate void AmmoChange(WeaponType type, int InMag, int MagSize);
+    public AmmoChange OnAmmoChange;
     public virtual void Fire()
     {
         TBSTimer = TBS;
         InMag--;
         FireAnimation.Play();
+        OnAmmoChange.Invoke(TypeOfWeapon, InMag, MagSize);
         if (ReloadAfterLastShot && InMag == 0)
         {
             StartReload();
@@ -39,6 +43,7 @@ public abstract class Gun : MonoBehaviour {
         InMag = MagSize;
         TBSTimer = 0;
         Reloading = false;
+        OnAmmoChange.Invoke(TypeOfWeapon, InMag, MagSize);
     }
     public virtual void StartReload()
     {

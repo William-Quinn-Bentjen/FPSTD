@@ -36,7 +36,11 @@ public class Pistol : Gun {
             base.StartReload();
         }
     }
-	void FixedUpdate () {
+    void Start()
+    {
+        OnAmmoChange.Invoke(TypeOfWeapon, InMag, MagSize);
+    }
+    void FixedUpdate () {
         TBSTimer -= Time.deltaTime;
         //Reload logic
         if (Reloading)
