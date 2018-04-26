@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour {
     public float TBSTimer;
 	// Use this for initialization
 	void Start () {
-        Health.Death = Death;
+        Health.OnDeath = Death;
         EnemyDestination = Destination.instance.gameObject;
         agent.destination = EnemyDestination.transform.position;
         PooledObjectComponent.myPool = WaveManager.EnemySpawner.EnemyPool;
@@ -44,6 +44,7 @@ public class EnemyController : MonoBehaviour {
     {
         TBSTimer = TimeBetweenShots;
         ResourceManager.Resources += ResourceManager.KillReward;
+        ResourcesUI.UpdateResources.Invoke();
         WaveManager.RemoveEnemy(gameObject);
         Debug.Log("death");
         PooledObjectComponent.returnToPool();

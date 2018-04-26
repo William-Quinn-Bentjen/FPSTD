@@ -11,8 +11,9 @@ public class Tower : MonoBehaviour {
         HP.HP = 100;
     }
 	// Use this for initialization
-	void Start () {
-        HP.Death = Death;
+	void Awake () {
+        HP.OnDeath = Death;
+        TowerSliderUI.tower = this;
 	}
 	
 	// Update is called once per frame

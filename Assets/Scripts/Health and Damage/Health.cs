@@ -7,14 +7,23 @@ public class Health : MonoBehaviour, IDamageable {
     public float HP;
     public float maxHP;
 
-    public delegate void OnDeath();
-    public OnDeath Death;
+    public delegate void OnDeathEvent();
+    public OnDeathEvent OnDeath;
+    public delegate void OnDamage(float newHP);
+    public OnDamage OnTakeDamage;
+
     public void TakeDamage(float amount)
     {
         HP -= amount;
-        if (HP < minHP)
+        if (OnTakeDamage != null)
         {
-            Death.Invoke();
+            //used to avoid null reference exceptions
+            OnTakeDamage.Invoke(HP);
+        }
+        //used to avoid null reference exceptions
+        if (OnDeath != null && HP < minHP)
+        {
+            OnDeath.Invoke();
         }
     }
     public void Heal(int amount)
