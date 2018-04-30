@@ -46,4 +46,12 @@ public class Health : MonoBehaviour, IDamageable {
         }
         HP = newHP;
     }
+    public void SetMaxHP(float newMaxHP, bool SetHPToMax = false)
+    {
+        maxHP = newMaxHP;
+        if (SetHPToMax)
+        {
+            HP = maxHP;
+        }
+    }
 }

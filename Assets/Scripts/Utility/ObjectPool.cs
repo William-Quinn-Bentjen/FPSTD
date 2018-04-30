@@ -54,7 +54,6 @@ public class ObjectPool : MonoBehaviour {
             poppedObj.transform.SetParent(null);
             poppedObj.transform.position = pos;
             poppedObj.SetActive(true);
-            Debug.Log(poppedObj);
             return poppedObj;
         }
         else

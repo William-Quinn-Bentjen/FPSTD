@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour {
-    public ObjectPool EnemyPool;
     public List<GameObject> SpawnPoints = new List<GameObject>();
     //spawn
     public bool Spawn()
@@ -12,7 +11,8 @@ public class Spawner : MonoBehaviour {
         if (spawnPoint != null)
         {
             //spawn thing here
-            GameObject Spawned = EnemyPool.getObject(spawnPoint.transform.position);
+            GameObject Spawned = GameManager.instance.enemyPool.getObject(spawnPoint.transform.position);
+            Spawned.GetComponent<EnemyController>().ChangeStats(WaveManager.instance.Waves[0]);
             WaveManager.AddEnemy(Spawned);
             return true;
         }
@@ -52,6 +52,7 @@ public class Spawner : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         WaveManager.EnemySpawner = this;
+        GameManager.instance.spawner = this;
 	}
 	
 	// Update is called once per frame

@@ -11,11 +11,11 @@ public class EnemyController : MonoBehaviour {
     public float TimeBetweenShots;
     public float TBSTimer;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         Health.OnDeath = Death;
         EnemyDestination = Destination.instance.gameObject;
         agent.destination = EnemyDestination.transform.position;
-        PooledObjectComponent.myPool = WaveManager.EnemySpawner.EnemyPool;
+        PooledObjectComponent.myPool = GameManager.instance.enemyPool; 
 	}
 	
 	// Update is called once per frame
@@ -40,13 +40,27 @@ public class EnemyController : MonoBehaviour {
         }
         return false;
     }
-    void Death()
+    public void ChangeStats(WaveSettings waveSetting)
+    {
+        Health.SetMaxHP(waveSetting.Health, true);
+        agent.speed = waveSetting.Speed;
+        agent.acceleration = waveSetting.Acceleration;
+        Damage = waveSetting.Damage;
+        TimeBetweenShots = waveSetting.TBS;
+    }
+    public void ReturnToPool()
     {
         TBSTimer = TimeBetweenShots;
-        ResourceManager.Resources += ResourceManager.KillReward;
-        ResourcesUI.UpdateResources.Invoke();
-        WaveManager.RemoveEnemy(gameObject);
-        Debug.Log("death");
+        WaveManager.instance.RemoveEnemy(gameObject);
+        Debug.Log("Enemy returned to pool");
+        WaveManager.instance.RemoveEnemy(gameObject);
         PooledObjectComponent.returnToPool();
+    }
+    void Death()
+    {
+        //go back to spawn pool
+        ReturnToPool();
+        ResourceManager.AddKillReward();
+        Debug.Log("Enemy Death");
     }
 }

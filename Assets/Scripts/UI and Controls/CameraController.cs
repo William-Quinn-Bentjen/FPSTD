@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour {
         rotX = rot.x;
 	}
 
-    public void CursorLocked(bool locked = true)
+    public static void CursorLocked(bool locked = true)
     {
         if (locked)
         {

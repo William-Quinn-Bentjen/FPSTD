@@ -1,11 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
+public class WaveSettings
+{
+    //would have used a struct but I liked the idea of the wave settings being able to increase themself and not creating a new wavesetting with slightly better stats
+    public void IncreaseDifficulty()
+    {
+        EnemiesInWave += 5;
+        WaveTimeLimit++;
+        Speed++;
+        //Acceleration++;
+        Health *= 1.1f;
+        Damage *= 1.25f;
+        TBS *= 0.9f;
+    }
+    //wave settings
+    public int EnemiesInWave = 1;
+    public int WaveTimeLimit = 60;
+    //enemy settings
+    public float Speed = 3.5f;
+    public float Acceleration = 8f;
+    public float Health = 100;
+    //damage settings
+    public float Damage = 1;
+    public float TBS = 1;
+}
 public class WaveManager : MonoBehaviour {
+    public int WaveCount = 0;
+    public static WaveManager instance;
     public ObjectPool EnemyPool;
     public static Spawner EnemySpawner;
     public static GameObject Destination;
+    public List<WaveSettings> Waves = new List<WaveSettings>();
     public static List<GameObject> Wave = new List<GameObject>();
     public static float WaveTime = 300;
     public static float WaveTimer;
@@ -14,7 +41,7 @@ public class WaveManager : MonoBehaviour {
     {
         Wave.Add(enemy);
     }
-    public static void RemoveEnemy(GameObject enemy)
+    public void RemoveEnemy(GameObject enemy)
     {
         Wave.Remove(enemy);
         if (Wave.Count == 0)
@@ -25,23 +52,46 @@ public class WaveManager : MonoBehaviour {
             WaveEnd();
         }
     }
-	public static void WaveStart(float time, int Enemies)
+	public void WaveStart()
     {
-        WaveTime = time;
+        //if it was the last wave just make it harder
+        if (Waves.Count == 1)
+        {
+            Waves[0].IncreaseDifficulty();
+        }
+        WaveTime = Waves[0].WaveTimeLimit;
         WaveTimer = 0;
-        ToBeSpawned = Enemies;
-        
+        ToBeSpawned = Waves[0].EnemiesInWave;
+        WaveCount++;
     }
-    public static void WaveEnd()
+    public void WaveEnd()
     {
         Debug.Log("Wave end");
-        foreach(GameObject enemy in Wave)
+        //did wave end from time limit?
+        if (Wave.Count > 0)
         {
-            enemy.GetComponent<PooledObject>().returnToPool();
+            //enemies removal from current wave (see below for why I'm using this instead of a for loop)
+            while(Wave.Count > 0)
+            {
+                Wave[0].GetComponent<EnemyController>().ReturnToPool();
+            }
+            //removed becuse the enemies tell the wave manager to remove them from the pool when ReturnToPool is called now and foreach might cause problems because of it
+            //foreach (GameObject enemy in Wave)
+            //{
+            //    enemy.GetComponent<EnemyController>().ReturnToPool();
+            //}
+            Wave = new List<GameObject>();
+            ResourceManager.Resources += ResourceManager.TimeExpireReward;
         }
-        Wave = new List<GameObject>();
         WaveTimer = 0;
+        //remove wave (would have used stack but inspector doesnt want to show it and I don't want to spend time on it)
+        if (Waves.Count > 1)
+        {
+            Waves.RemoveAt(0);
+        }
         //ui pop up?
+        //remove later
+        //WaveStart();
     }
     // Use this for initialization
 	void FixedUpdate()
@@ -65,8 +115,14 @@ public class WaveManager : MonoBehaviour {
             }
         }
     }
+    void Awake()
+    {
+        GameManager.instance.waveManager = this;
+        //OLD
+        instance = this;
+    }
     void Start()
     {
-        WaveStart(60, 5);
+        WaveStart();
     }
 }
