@@ -13,6 +13,7 @@ public abstract class Gun : MonoBehaviour {
     public bool Reloading = false;
     public bool ReloadAfterLastShot = true;
     public WeaponType TypeOfWeapon;
+    public ReticleController.ReticleType TypeOfReticle;
     public GameObject Modle;
     public Animation FireAnimation;
     public delegate void AmmoChange(WeaponType type, int InMag, int MagSize);

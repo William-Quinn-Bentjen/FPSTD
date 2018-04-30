@@ -22,6 +22,10 @@ public class Holster : MonoBehaviour {
     public void SelectWeapon(Gun gun)
     {
         DeselectWeapon(Selected);
+        if (gun.TypeOfReticle != ReticleController.ReticleType.Rifle)
+        {
+            ReticleController.instance.ChangeReticle(gun.TypeOfReticle);
+        }
         Selected = gun;
         Selected.enabled = true;
         Selected.Modle.gameObject.SetActive(true);
@@ -30,6 +34,7 @@ public class Holster : MonoBehaviour {
     {
         Selected.enabled = false;
         Selected.Modle.gameObject.SetActive(false);
+        ReticleController.instance.ChangeReticle(ReticleController.ReticleType.None);
     }
     // Use this for initialization
     void Awake () {

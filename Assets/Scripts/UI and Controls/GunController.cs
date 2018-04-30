@@ -45,8 +45,16 @@ public class GunController : MonoBehaviour {
         }
         if (Input.GetButtonDown("Special"))
         {
-            //scope in if the selected weapon can
-            if (GunHolster.Selected == shotgun && GunHolster.Selected.Reloading)
+            //scope in if the selected weapon can (not reloading and already scoped in
+            if (GunHolster.Selected.TypeOfWeapon == WeaponType.Rifle && !GunHolster.Selected.Reloading && ReticleController.instance.SelectedWeapon != ReticleController.ReticleType.Rifle)
+            {
+                ReticleController.instance.ChangeReticle(ReticleController.ReticleType.Rifle);
+            }
+            else if (GunHolster.Selected.TypeOfWeapon == WeaponType.Rifle && ReticleController.instance.SelectedWeapon == ReticleController.ReticleType.Rifle)
+            {
+                ReticleController.instance.ChangeReticle(ReticleController.ReticleType.None);
+            }
+            else if (GunHolster.Selected.TypeOfWeapon == WeaponType.Shotgun && GunHolster.Selected.Reloading)
             {
                 Debug.Log("Canceled reload");
                 //cancel shotgun reload
