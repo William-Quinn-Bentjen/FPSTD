@@ -23,6 +23,7 @@ public class GunController : MonoBehaviour {
         if (instance == null)
         {
             instance = this;
+            GameManager.instance.gunController = this;
         }
         else
         {

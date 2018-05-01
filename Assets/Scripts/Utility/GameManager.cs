@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour {
     public WaveManager waveManager;
     public ResourceManager resourceManager;
     public Holster holster;
-
+    public UpgradeManager upgradeManager;
+    public GunController gunController;
 
     public UpgradeScreenUI upgradeScreenUI;
     //functions

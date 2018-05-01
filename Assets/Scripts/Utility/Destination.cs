@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destination : MonoBehaviour {
+public class Destination : MonoBehaviour
+{
     public static Destination instance;
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake()
+    {
         GameManager.instance.destination = this;
-		if (instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -15,10 +17,5 @@ public class Destination : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
 }

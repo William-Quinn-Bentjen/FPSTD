@@ -121,10 +121,12 @@ public class UBSTriggerZone : MonoBehaviour {
             Exited.Add(other.gameObject);
         }
     }
+#if UNITY_EDITOR
     void OnDrawGizmos()
     {
         Gizmos.color = GizmoColor;
-        Gizmos.DrawMesh(GetComponent<MeshFilter>().sharedMesh, -1,transform.position);
+        Gizmos.DrawMesh(GetComponent<MeshFilter>().sharedMesh, -1, transform.position);
 
     }
+#endif
 }
