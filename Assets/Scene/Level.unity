@@ -1200,6 +1200,7 @@ MonoBehaviour:
   upgradeManager: {fileID: 0}
   gunController: {fileID: 0}
   upgradeScreenUI: {fileID: 0}
+  playerCamera: {fileID: 0}
 --- !u!4 &188328014
 Transform:
   m_ObjectHideFlags: 0
@@ -2327,6 +2328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c797e826d944549b3bb4b747c0708c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RepairButton: {fileID: 571003287}
   CostText: {fileID: 798679619}
   LeftoverResourcesText: {fileID: 1830242536}
 --- !u!114 &519993571
@@ -2961,17 +2963,6 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 571003287}
-          m_MethodName: UpdateCost
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 571003287}
           m_MethodName: SetCostValue
           m_Mode: 1
@@ -3635,7 +3626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minHP: 0
-  HP: 50
+  HP: 100
   maxHP: 100
 --- !u!65 &704869948
 BoxCollider:
@@ -7575,6 +7566,7 @@ MonoBehaviour:
   sensitivityY: 90
   clampAngle: 80
   LockAtStart: 1
+  enableInput: 1
 --- !u!114 &1620919124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7723,6 +7715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc74b2da0b201d4cb2263a310e712f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableInput: 1
   rifle: {fileID: 1620919127}
   shotgun: {fileID: 1620919126}
   handgun: {fileID: 1620919125}

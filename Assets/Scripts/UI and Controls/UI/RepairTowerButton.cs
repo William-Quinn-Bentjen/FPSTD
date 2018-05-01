@@ -10,13 +10,11 @@ public class RepairTowerButton : MonoBehaviour {
     }
     public void SetCostValue()
     {
-        UpgradeScreenUI.instance.CostText.text = Cost.ToString();
-        UpgradeScreenUI.instance.LeftoverResourcesText.text = (ResourceManager.Resources - Cost).ToString();
+        UpgradeScreenUI.instance.UpdateCostText(Cost);
     }
     public void ResetCostValue()
     {
-        UpgradeScreenUI.instance.CostText.text = "0";
-        UpgradeScreenUI.instance.LeftoverResourcesText.text = ResourceManager.Resources.ToString();
+        UpgradeScreenUI.instance.UpdateCostText(0);
     }
     public void RepairTower()
     {

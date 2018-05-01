@@ -6,7 +6,7 @@ public class Destination : MonoBehaviour
 {
     public static Destination instance;
     // Use this for initialization
-    void Awake()
+    void Start()
     {
         GameManager.instance.destination = this;
         if (instance == null)

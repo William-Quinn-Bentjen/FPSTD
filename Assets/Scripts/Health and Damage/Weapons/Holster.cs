@@ -47,9 +47,12 @@ public class Holster : MonoBehaviour {
         //GunController.GunHolster = this;
         //SelectWeapon(Weapons[0]);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    //used to make sure the player has ammo in their weapon after a new round starts
+    public void ReloadAll()
+    {
+        foreach (Gun gun in Weapons)
+        {
+            gun.Reload();
+        }
+    }
 }

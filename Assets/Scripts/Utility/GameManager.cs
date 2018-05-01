@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour {
     public GunController gunController;
 
     public UpgradeScreenUI upgradeScreenUI;
+    public CameraController playerCamera;
     //functions
     public void PlayerDeath()
     {
@@ -36,16 +37,24 @@ public class GameManager : MonoBehaviour {
     }
     public void StartWave()
     {
-        //start wave
+        //camera and control changes 
         CameraController.CursorLocked(true);
+        playerCamera.enableInput = true;
+        gunController.enableInput = true;
         UpgradeScreen.enabled = false;
+        //reload weapons and start wave
+        holster.ReloadAll();
         waveManager.WaveStart();
     }
     public void EndWave()
     {
+        //camera and control changes
         CameraController.CursorLocked(false);
+        playerCamera.enableInput = false;
+        gunController.enableInput = false;
         UpgradeScreen.enabled = true;
-        //waveManager.WaveEnd();
+        //used so the repair button only calculates it's cost when the wave ends instead of whenever a mouse enters or exits the button
+        upgradeScreenUI.RepairButton.UpdateCost();
     }
     //Monobehavior functions
     void Awake()
@@ -59,13 +68,18 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-    bool started = false;
+    bool isStared = false;
     void Update()
     {
-        if (started == false)
+        if (!isStared)
         {
-            //StartWave();
-            started = true;
+            upgradeScreenUI.enabled = false;
+            StartWave();
         }
+    }
+    void Start()
+    {
+        //UpgradeScreenUI.instance.enabled = false;
+        //StartWave();
     }
 }

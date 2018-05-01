@@ -8,10 +8,12 @@ public class CameraController : MonoBehaviour {
     public float sensitivityY = 90;
     public float clampAngle = 80;
     public bool LockAtStart = true;
+    public bool enableInput = true;
     private float rotY = 0;
     private float rotX = 0;
     // Use this for initialization
     void Start () {
+        GameManager.instance.playerCamera = this;
 		if (LockAtStart)
         {
             CursorLocked(LockAtStart);
@@ -31,18 +33,21 @@ public class CameraController : MonoBehaviour {
         {
             Cursor.lockState = CursorLockMode.None;
         }
-        Cursor.visible = locked;
+        Cursor.visible = !locked;
     }
 	// Update is called once per frame
 	void Update () {
-        Vector2 MouseMovement = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        if (MouseMovement != Vector2.zero)
+        if (enableInput)
         {
-            rotY += MouseMovement.x * sensitivityX * Time.deltaTime;
-            rotX += -MouseMovement.y * sensitivityY * Time.deltaTime;
-            rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
-            Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
-            transform.rotation = localRotation;
+            Vector2 MouseMovement = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+            if (MouseMovement != Vector2.zero)
+            {
+                rotY += MouseMovement.x * sensitivityX * Time.deltaTime;
+                rotX += -MouseMovement.y * sensitivityY * Time.deltaTime;
+                rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
+                Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
+                transform.rotation = localRotation;
+            }
         }
 	}
 }

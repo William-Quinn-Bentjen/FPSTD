@@ -8,6 +8,7 @@ public enum WeaponType
     Rifle
 }
 public class GunController : MonoBehaviour {
+    public bool enableInput = true;
     //used for UI to have access to the named weapons below so it can tell what was selected easily
     public static GunController instance;
     public static Holster GunHolster;
@@ -34,55 +35,59 @@ public class GunController : MonoBehaviour {
 	}
     void Update()
     {
-        if (Input.GetButtonDown("Fire"))
+        if (enableInput)
         {
-            //fire selected weapon
-            GunHolster.Selected.TriggerDown();
-        }
-        if (Input.GetButtonDown("Reload"))
-        {
-            //reload currently selected weapon
-            GunHolster.Selected.StartReload();
-        }
-        if (Input.GetButtonDown("Special"))
-        {
-            //scope in if the selected weapon can (not reloading and already scoped in
-            if (GunHolster.Selected.TypeOfWeapon == WeaponType.Rifle && !GunHolster.Selected.Reloading && ReticleController.instance.SelectedWeapon != ReticleController.ReticleType.Rifle)
+            if (Input.GetButtonDown("Fire"))
             {
-                ReticleController.instance.ChangeReticle(ReticleController.ReticleType.Rifle);
+                //fire selected weapon
+                GunHolster.Selected.TriggerDown();
             }
-            else if (GunHolster.Selected.TypeOfWeapon == WeaponType.Rifle && ReticleController.instance.SelectedWeapon == ReticleController.ReticleType.Rifle)
+            if (Input.GetButtonDown("Reload"))
             {
-                ReticleController.instance.ChangeReticle(ReticleController.ReticleType.None);
+                //reload currently selected weapon
+                GunHolster.Selected.StartReload();
             }
-            else if (GunHolster.Selected.TypeOfWeapon == WeaponType.Shotgun && GunHolster.Selected.Reloading)
+            if (Input.GetButtonDown("Special"))
             {
-                Debug.Log("Canceled reload");
-                //cancel shotgun reload
-                shotgun.CancelReload();
+                //scope in if the selected weapon can (not reloading and already scoped in
+                if (GunHolster.Selected.TypeOfWeapon == WeaponType.Rifle && !GunHolster.Selected.Reloading && ReticleController.instance.SelectedWeapon != ReticleController.ReticleType.Rifle)
+                {
+                    ReticleController.instance.ChangeReticle(ReticleController.ReticleType.Rifle);
+                }
+                else if (GunHolster.Selected.TypeOfWeapon == WeaponType.Rifle && ReticleController.instance.SelectedWeapon == ReticleController.ReticleType.Rifle)
+                {
+                    ReticleController.instance.ChangeReticle(ReticleController.ReticleType.None);
+                }
+                else if (GunHolster.Selected.TypeOfWeapon == WeaponType.Shotgun && GunHolster.Selected.Reloading)
+                {
+                    Debug.Log("Canceled reload");
+                    //cancel shotgun reload
+                    shotgun.CancelReload();
+                }
+                //if (GunHolster.Selected == rifle && !GunHolster.Selected.Reloading)
+                //{
+                //    zoom in
+                //}
             }
-            //if (GunHolster.Selected == rifle && !GunHolster.Selected.Reloading)
-            //{
-            //    zoom in
-            //}
-        }
-        if (Input.GetButton("SelectRifle"))
-        {
-            //switch to rifle
-            GunHolster.SelectWeapon(GunHolster.Weapons[2]);
-            OnSelectWeapon.Invoke(WeaponType.Rifle);
-        }
-        else if (Input.GetButton("SelectShotgun"))
-        {
-            //switch to shotgun
-            GunHolster.SelectWeapon(GunHolster.Weapons[1]);
-            OnSelectWeapon.Invoke(WeaponType.Shotgun);
-        }
-        else if (Input.GetButton("SelectHandgun"))
-        {
-            //switch to handgun
-            GunHolster.SelectWeapon(GunHolster.Weapons[0]);
-            OnSelectWeapon.Invoke(WeaponType.Pistol);
+            if (Input.GetButton("SelectRifle"))
+            {
+                //switch to rifle
+                GunHolster.SelectWeapon(GunHolster.Weapons[2]);
+                OnSelectWeapon.Invoke(WeaponType.Rifle);
+            }
+            else if (Input.GetButton("SelectShotgun"))
+            {
+                //switch to shotgun
+                GunHolster.SelectWeapon(GunHolster.Weapons[1]);
+                OnSelectWeapon.Invoke(WeaponType.Shotgun);
+            }
+            else if (Input.GetButton("SelectHandgun"))
+            {
+                //switch to handgun
+                GunHolster.SelectWeapon(GunHolster.Weapons[0]);
+                OnSelectWeapon.Invoke(WeaponType.Pistol);
+            }
         }
     }
+
 }
