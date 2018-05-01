@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour {
     public GameObject Laser;
-    public GameObject FlashLight;
+    public List<GameObject> Fires = new List<GameObject>();
     public enum UpgradeType
     {
         Magazine,
@@ -15,11 +15,130 @@ public class UpgradeManager : MonoBehaviour {
         LaserSight,
         TowerStructure
     }
-    void Awake()
+    void Start()
     {
         GameManager.instance.upgradeManager = this;
     }
-    void Upgrade(UpgradeType upgrade)
+    private bool UpgradedFires = false;
+    private bool UpgradedLasers = false;
+    public void Upgrade(UpgradeOnHighlight info)
+    {
+        if (PriceCheck(info.Cost) >= 0)
+        {
+            Upgrade(info.UpgradeID);
+        }
+    }
+    public float PriceCheck(float cost)
+    {
+        return ResourceManager.Resources - cost;
+    }
+    //used in inspector
+    /*
+    1 Pistol Damage
+    2 Pistol Mag
+    3 Pistol Reload
+    4 Rifle Damage
+    5 Rifle Mag
+    6 Rifle Reload
+    7 Shotgun Damage
+    8 Shotgun Mag
+    9 Shotgun Reload
+    10 Shotgun Pellets
+    11 Tower Structure
+    //ONE TIME USES
+    12 Fires
+    13 Laser 
+    //repair tower
+
+    */
+    public bool Upgrade(int UpgradeID)
+    {
+        switch(UpgradeID)
+        {
+            case 1:
+                {
+                    GameManager.instance.gunController.handgun.Damage += 10;
+                    return true;                         
+                }                                    
+            case 2:                                  
+                {                                    
+                    GameManager.instance.gunController.handgun.MagSize += 2;
+                    return true;                            
+                }                                     
+            case 3:                                   
+                {                                      
+                    GameManager.instance.gunController.handgun.ReloadTime *= 0.9f;
+                    return true;
+                }
+            case 4:
+                {
+                    GameManager.instance.gunController.rifle.Damage += 30;
+                    return true;
+                }
+            case 5:
+                {
+                    GameManager.instance.gunController.rifle.MagSize += 1;
+                    return true;
+                }
+            case 6:
+                {
+                    GameManager.instance.gunController.rifle.ReloadTime *= 0.9f;
+                    return true;
+                }
+            case 7:
+                {
+                    GameManager.instance.gunController.shotgun.Damage += 15;
+                    return true;
+                }
+            case 8:
+                {
+                    GameManager.instance.gunController.shotgun.MagSize += 1;
+                    return true;
+                }
+            case 9:
+                {
+                    GameManager.instance.gunController.shotgun.ReloadTime *= 0.9f;
+                    return true;
+                }
+            case 10:
+                {
+                    GameManager.instance.gunController.shotgun.PelletsPerShell += 1;
+                    return true;
+                }
+            case 11:
+                {
+                    //up tower hp
+                    GameManager.instance.towerHP.SetMaxHP(GameManager.instance.towerHP.maxHP + 30, true);
+                    return true;
+                }
+            case 12:
+                {
+                    //fires
+                    if (UpgradedFires == false)
+                    {
+                        foreach(GameObject Fire in Fires)
+                        {
+                            Fire.SetActive(true);
+                        }
+                        return true;
+                    }
+                    return false;
+                }
+            case 13:
+                {
+                    //laser
+                    if (UpgradedLasers == false)
+                    {
+                        Laser.SetActive(true);
+                        return true;
+                    }
+                    return false;
+                }
+        }
+        return false;
+    }
+    //was going to be used but can't be called in inspector (left anyway)
+    public void Upgrade(UpgradeType upgrade)
     {
         if (upgrade == UpgradeType.FlashLight)
         {
@@ -34,7 +153,7 @@ public class UpgradeManager : MonoBehaviour {
             GameManager.instance.towerHP.SetMaxHP(GameManager.instance.towerHP.maxHP * 1.1f, true);
         }
     }
-    void Upgrade(WeaponType type, UpgradeType upgrade)
+    public void Upgrade(WeaponType type, UpgradeType upgrade)
     {
         if (type == WeaponType.Rifle)
         {
@@ -87,7 +206,6 @@ public class UpgradeManager : MonoBehaviour {
             {
                 gun.PelletsPerShell += 1;
             }
-        }
-        
+        }   
     }
 }

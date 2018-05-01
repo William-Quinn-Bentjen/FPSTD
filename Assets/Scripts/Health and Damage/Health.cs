@@ -26,7 +26,7 @@ public class Health : MonoBehaviour, IDamageable {
             OnDeath.Invoke();
         }
     }
-    public void Heal(int amount)
+    public void Heal(float amount)
     {
         HP += amount;
         if (HP > maxHP)

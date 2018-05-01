@@ -38,12 +38,14 @@ public class GameManager : MonoBehaviour {
     {
         //start wave
         CameraController.CursorLocked(true);
+        UpgradeScreen.enabled = false;
         waveManager.WaveStart();
     }
     public void EndWave()
     {
         CameraController.CursorLocked(false);
-        waveManager.WaveEnd();
+        UpgradeScreen.enabled = true;
+        //waveManager.WaveEnd();
     }
     //Monobehavior functions
     void Awake()
@@ -57,13 +59,13 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    bool started = false;
+    void Update()
+    {
+        if (started == false)
+        {
+            //StartWave();
+            started = true;
+        }
+    }
 }

@@ -18,6 +18,7 @@ public class WaveSettings
     //wave settings
     public int EnemiesInWave = 1;
     public int WaveTimeLimit = 60;
+    public float SpawnTime = 0.5f;
     //enemy settings
     public float Speed = 3.5f;
     public float Acceleration = 8f;
@@ -36,6 +37,8 @@ public class WaveManager : MonoBehaviour {
     public static List<GameObject> Wave = new List<GameObject>();
     public static float WaveTime = 300;
     public static float WaveTimer;
+    private float spawnTimer = 0;
+    public static float spawnRate = 0.5f;
     public static int ToBeSpawned = 0;
     public static void AddEnemy(GameObject enemy)
     {
@@ -59,10 +62,15 @@ public class WaveManager : MonoBehaviour {
         {
             Waves[0].IncreaseDifficulty();
         }
-        WaveTime = Waves[0].WaveTimeLimit;
-        WaveTimer = 0;
-        ToBeSpawned = Waves[0].EnemiesInWave;
-        WaveCount++;
+        if (Waves.Count >= 1)
+        {
+            WaveTime = Waves[0].WaveTimeLimit;
+            WaveTimer = 0;
+            ToBeSpawned = Waves[0].EnemiesInWave;
+            spawnTimer = 0;
+            spawnRate = Waves[0].SpawnTime;
+            WaveCount++;
+        }
     }
     public void WaveEnd()
     {
@@ -90,13 +98,13 @@ public class WaveManager : MonoBehaviour {
             Waves.RemoveAt(0);
         }
         //ui pop up?
-        //remove later
-        //WaveStart();
+        GameManager.instance.EndWave();
     }
     // Use this for initialization
 	void FixedUpdate()
     {
         WaveTimer += Time.deltaTime;
+        spawnTimer += Time.deltaTime;
         //checks for time limit
         if (WaveTimer >= WaveTime)
         {
@@ -107,10 +115,11 @@ public class WaveManager : MonoBehaviour {
         }
         //spawns enemies
         Debug.Log(ToBeSpawned);
-        if (ToBeSpawned > 0)
+        if (ToBeSpawned > 0 && spawnTimer > spawnRate)
         {
             if (EnemySpawner.Spawn())
             {
+                spawnTimer = 0;
                 ToBeSpawned--;
             }
         }
@@ -120,9 +129,5 @@ public class WaveManager : MonoBehaviour {
         GameManager.instance.waveManager = this;
         //OLD
         instance = this;
-    }
-    void Start()
-    {
-        WaveStart();
     }
 }

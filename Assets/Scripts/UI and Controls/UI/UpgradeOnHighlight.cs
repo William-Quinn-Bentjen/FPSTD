@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class UpgradeOnHighlight : MonoBehaviour
 {
     public float Cost;
+    public int UpgradeID;
     public void SetCostValue()
     {
         UpgradeScreenUI.instance.UpdateCostText(Cost);

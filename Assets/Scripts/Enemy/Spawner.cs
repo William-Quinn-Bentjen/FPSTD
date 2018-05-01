@@ -10,9 +10,10 @@ public class Spawner : MonoBehaviour {
         GameObject spawnPoint = FindSpawn();
         if (spawnPoint != null)
         {
-            //spawn thing here
             GameObject Spawned = GameManager.instance.enemyPool.getObject(spawnPoint.transform.position);
-            Spawned.GetComponent<EnemyController>().ChangeStats(WaveManager.instance.Waves[0]);
+            EnemyController enemy = Spawned.GetComponent<EnemyController>();
+            enemy.ChangeStats(WaveManager.instance.Waves[0]);
+            enemy.agent.destination = GameManager.instance.destination.transform.position;
             WaveManager.AddEnemy(Spawned);
             return true;
         }
@@ -24,7 +25,7 @@ public class Spawner : MonoBehaviour {
         List<GameObject> validSpawns = FilterSpawns();
         if (validSpawns.Count > 0)
         {
-            return validSpawns[Random.Range(0, validSpawns.Count - 1)];
+            return validSpawns[Random.Range(0, validSpawns.Count)];
         }
         return null;
     }
@@ -34,13 +35,18 @@ public class Spawner : MonoBehaviour {
         List<GameObject> retVal = new List<GameObject>();
         foreach (GameObject spawnPoint in SpawnPoints)
         {
-            if (spawnPoint.GetComponent<UBSTriggerZone>().GetInteractors(TriggerState.All).Count < 0)
+            //used to debug spawn points (disable ones that you dont want things to spawn at)
+            if (spawnPoint.activeSelf)
             {
-                //has enemy in it, don't spawn here
-            }
-            else
-            {
-                retVal.Add(spawnPoint);
+                if (spawnPoint.GetComponent<UBSTriggerZone>().GetInteractors(TriggerState.All).Count > 1)
+                {
+                    Debug.Log("has enemy");
+                    //has enemy in it, don't spawn here
+                }
+                else
+                {
+                    retVal.Add(spawnPoint);
+                }
             }
         }
         if (retVal.Count > 0)

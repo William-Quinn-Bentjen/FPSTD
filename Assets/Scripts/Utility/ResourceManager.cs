@@ -24,7 +24,7 @@ public class ResourceManager : MonoBehaviour {
         Resources += WaveEliminationReward;
         ResourcesUI.UpdateResources.Invoke();
     }
-    void Awake()
+    void Start()
     {
         GameManager.instance.resourceManager = this;
     }

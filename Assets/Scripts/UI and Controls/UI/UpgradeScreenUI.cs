@@ -17,13 +17,4 @@ public class UpgradeScreenUI : MonoBehaviour {
         GameManager.instance.upgradeScreenUI = this;
         instance = this;
     }
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
