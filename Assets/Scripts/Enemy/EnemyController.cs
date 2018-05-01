@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         Health.OnDeath = Death;
-        EnemyDestination = Destination.instance.gameObject;
+        EnemyDestination = GameManager.instance.destination.gameObject;
         agent.destination = EnemyDestination.transform.position;
         PooledObjectComponent.myPool = GameManager.instance.enemyPool; 
 	}
