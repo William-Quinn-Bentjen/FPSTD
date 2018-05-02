@@ -25,6 +25,7 @@ public class UpgradeOnHighlight : MonoBehaviour
     public void AttemptUpgrade()
     {
         float newBal = GameManager.instance.resourceManager.Resources - Cost;
+        //newbal is evaluated first so upgrade will only be called if they can actually afford it 
         if (newBal > 0 && GameManager.instance.upgradeManager.Upgrade(upgrade))
         {
             GameManager.instance.resourceManager.Resources = newBal;

@@ -207,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 100
   UpgradeID: 5
+  upgrade: 0
 --- !u!114 &18536303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,6 +608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 100
   UpgradeID: 9
+  upgrade: 0
 --- !u!114 &90843411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2204,6 +2206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 100
   UpgradeID: 4
+  upgrade: 0
 --- !u!114 &509278643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3261,6 +3264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 100
   UpgradeID: 3
+  upgrade: 0
 --- !u!114 &622022485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3882,6 +3886,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 100
   UpgradeID: 9
+  upgrade: 0
 --- !u!114 &763115271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4673,6 +4678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 100
   UpgradeID: 1
+  upgrade: 0
 --- !u!114 &949550165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5668,6 +5674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 100
   UpgradeID: 7
+  upgrade: 0
 --- !u!114 &1203327544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5932,6 +5939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 100
   UpgradeID: 12
+  upgrade: 0
 --- !u!114 &1239562439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6727,6 +6735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 100
   UpgradeID: 11
+  upgrade: 0
 --- !u!114 &1427332845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7199,6 +7208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 100
   UpgradeID: 10
+  upgrade: 0
 --- !u!114 &1515068145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7826,6 +7836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 100
   UpgradeID: 2
+  upgrade: 0
 --- !u!114 &1651775303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8078,6 +8089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 100
   UpgradeID: 8
+  upgrade: 0
 --- !u!114 &1666481067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8751,6 +8763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 100
   UpgradeID: 13
+  upgrade: 0
 --- !u!114 &1863228814
 MonoBehaviour:
   m_ObjectHideFlags: 0

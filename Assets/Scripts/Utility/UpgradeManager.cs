@@ -7,11 +7,17 @@ public class UpgradeManager : MonoBehaviour {
     public List<GameObject> Fires = new List<GameObject>();
     public enum UpgradeType
     {
-        Magazine,
-        Damage,
-        ReloadSpeed,
-        NumberOfPellets,
-        FlashLight,
+        PistolMagazine,
+        PistolDamage,
+        PistolReloadSpeed,
+        ShotgunMagazine,
+        ShotgunDamage,
+        ShotgunNumberOfPellets,
+        ShotgunReloadSpeed,
+        RifleMagazine,
+        RifleDamage,
+        RifleReloadSpeed,
+        Fires,
         LaserSight,
         TowerStructure
     }
@@ -140,13 +146,80 @@ public class UpgradeManager : MonoBehaviour {
     //was going to be used but can't be called in inspector (left anyway)
     public bool Upgrade(UpgradeType upgrade)
     {
-        if (upgrade == UpgradeType.FlashLight)
+        if (upgrade == UpgradeType.PistolDamage)
         {
-            //equip flashlight
+            GameManager.instance.gunController.handgun.Damage += 10;
+            return true;
+        }
+        else if (upgrade == UpgradeType.PistolMagazine)
+        {
+            GameManager.instance.gunController.handgun.MagSize += 2;
+            return true;
+        }
+        else if (upgrade == UpgradeType.PistolReloadSpeed)
+        {
+            GameManager.instance.gunController.handgun.ReloadTime *= 0.9f;
+            return true;
+        }
+        //shotgun
+        else if (upgrade == UpgradeType.ShotgunDamage)
+        {
+            GameManager.instance.gunController.shotgun.Damage += 15;
+            return true;
+        }
+        else if (upgrade == UpgradeType.ShotgunMagazine)
+        {
+            GameManager.instance.gunController.shotgun.MagSize += 1;
+            return true;
+        }
+        else if (upgrade == UpgradeType.ShotgunNumberOfPellets)
+        {
+            GameManager.instance.gunController.shotgun.PelletsPerShell += 1;
+            return true;
+        }
+        else if (upgrade == UpgradeType.ShotgunReloadSpeed)
+        {
+            GameManager.instance.gunController.shotgun.ReloadTime *= 0.9f;
+            return true;
+        }
+        //rifle
+        else if (upgrade == UpgradeType.RifleDamage)
+        {
+            GameManager.instance.gunController.rifle.Damage += 30;
+            return true;
+        }
+        else if (upgrade == UpgradeType.RifleMagazine)
+        {
+            GameManager.instance.gunController.rifle.MagSize += 1;
+            return true;
+        }
+        else if (upgrade == UpgradeType.RifleReloadSpeed)
+        {
+            GameManager.instance.gunController.rifle.ReloadTime *= 0.9f;
+            return true;
+        }
+
+        //OTHER SECTION
+        else if (upgrade == UpgradeType.Fires)
+        {
+            if (UpgradedFires == false)
+            {
+                foreach (GameObject Fire in Fires)
+                {
+                    Fire.SetActive(true);
+                }
+                return true;
+            }
+            return false;
         }
         else if (upgrade == UpgradeType.LaserSight)
         {
-            //equip laser sight
+            if (UpgradedLasers == false)
+            {
+                Laser.SetActive(true);
+                return true;
+            }
+            return false;
         }
         else if (upgrade == UpgradeType.TowerStructure)
         {
