@@ -28,6 +28,7 @@ public class UpgradeOnHighlight : MonoBehaviour
         //newbal is evaluated first so upgrade will only be called if they can actually afford it 
         if (newBal > 0 && GameManager.instance.upgradeManager.Upgrade(upgrade))
         {
+            //they will only be charged if they can buy it and the upgrade was successful
             GameManager.instance.resourceManager.Resources = newBal;
         }
     }

@@ -15,6 +15,5 @@ public class PooledObject : MonoBehaviour {
         }
         transform.parent = myPool.transform;
         myPool.pool.Push(gameObject);
-        Debug.Log("returned to pool");
     }
 }

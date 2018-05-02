@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 252767999}
-  m_IndirectSpecularColor: {r: 0.069666035, g: 0.07369485, b: 0.09553804, a: 1}
+  m_IndirectSpecularColor: {r: 0.06966608, g: 0.073694915, b: 0.095538266, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2341,6 +2341,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RepairButton: {fileID: 571003287}
+  BalanceBackground: {fileID: 2130864650}
+  CanAffordColor: {r: 0, g: 1, b: 0, a: 0.02745098}
+  CantAffordColor: {r: 1, g: 0, b: 0, a: 0.209}
   CostText: {fileID: 798679619}
   LeftoverResourcesText: {fileID: 1830242536}
 --- !u!114 &519993571
@@ -5536,45 +5539,53 @@ MonoBehaviour:
   EnemyPool: {fileID: 1912822193}
   Waves:
   - EnemiesInWave: 5
-    WaveTimeLimit: 60
-    SpawnTime: 5
+    WaveTimeLimit: 90
+    SpawnTime: 3
+    Speed: 3.5
+    Acceleration: 8
+    Health: 20
+    Damage: 1
+    TBS: 1
+  - EnemiesInWave: 10
+    WaveTimeLimit: 90
+    SpawnTime: 3
     Speed: 3.5
     Acceleration: 8
     Health: 100
     Damage: 1
     TBS: 1
-  - EnemiesInWave: 10
-    WaveTimeLimit: 60
-    SpawnTime: 0.5
+  - EnemiesInWave: 15
+    WaveTimeLimit: 90
+    SpawnTime: 2
+    Speed: 3.5
+    Acceleration: 8
+    Health: 100
+    Damage: 2
+    TBS: 0.5
+  - EnemiesInWave: 20
+    WaveTimeLimit: 90
+    SpawnTime: 2
     Speed: 3.5
     Acceleration: 8
     Health: 100
     Damage: 5
-    TBS: 0.5
-  - EnemiesInWave: 30
+    TBS: 0.75
+  - EnemiesInWave: 20
     WaveTimeLimit: 120
-    SpawnTime: 0.5
+    SpawnTime: 1
     Speed: 3.5
     Acceleration: 8
-    Health: 150
+    Health: 100
     Damage: 5
-    TBS: 0.5
-  - EnemiesInWave: 10
+    TBS: 0.75
+  - EnemiesInWave: 20
     WaveTimeLimit: 120
     SpawnTime: 0.5
     Speed: 4
-    Acceleration: 10
-    Health: 200
-    Damage: 10
-    TBS: 0.25
-  - EnemiesInWave: 15
-    WaveTimeLimit: 300
-    SpawnTime: 0.5
-    Speed: 4
-    Acceleration: 10
-    Health: 200
-    Damage: 10
-    TBS: 0.25
+    Acceleration: 8
+    Health: 100
+    Damage: 5
+    TBS: 0.5
 --- !u!1 &1203327540
 GameObject:
   m_ObjectHideFlags: 0
