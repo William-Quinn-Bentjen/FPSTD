@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour {
     //variables
-    public static float Resources;
-    public static float KillReward = 1;
-    public static float TimeExpireReward = 5;
-    public static float WaveEliminationReward = 10;
+    public float Resources;
+    public float KillReward = 1;
+    public float TimeExpireReward = 5;
+    public float WaveEliminationReward = 10;
     //functions
-    public static void AddKillReward()
+    public void AddKillReward()
     {
         Resources += KillReward;
         ResourcesUI.UpdateResources.Invoke();
     }
-    public static void AddTimeReward()
+    public void AddTimeReward()
     {
         Resources += TimeExpireReward;
         ResourcesUI.UpdateResources.Invoke();
     }
-    public static void AddWaveEliminationReward()
+    public void AddWaveEliminationReward()
     {
         Resources += WaveEliminationReward;
         ResourcesUI.UpdateResources.Invoke();

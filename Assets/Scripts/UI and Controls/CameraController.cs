@@ -13,7 +13,15 @@ public class CameraController : MonoBehaviour {
     private float rotX = 0;
     // Use this for initialization
     void Start () {
-        GameManager.instance.playerCamera = this;
+        if (GameManager.instance.playerCamera == null)
+        {
+            GameManager.instance.playerCamera = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
 		if (LockAtStart)
         {
             CursorLocked(LockAtStart);
@@ -35,8 +43,7 @@ public class CameraController : MonoBehaviour {
         }
         Cursor.visible = !locked;
     }
-	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
         if (enableInput)
         {
             Vector2 MouseMovement = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));

@@ -50,7 +50,7 @@ public class WaveManager : MonoBehaviour {
         if (Wave.Count == 0)
         {
             //no enemies left
-            ResourceManager.Resources += ResourceManager.WaveEliminationReward;
+            GameManager.instance.resourceManager.AddWaveEliminationReward();
             Debug.Log("removed enemy");
             WaveEnd();
         }
@@ -71,6 +71,7 @@ public class WaveManager : MonoBehaviour {
             spawnRate = Waves[0].SpawnTime;
             WaveCount++;
         }
+        Debug.Log("WAVE " + WaveCount + " SETTINGS\nNumber Of Enemies: " + ToBeSpawned + "\nSpawn Rate: " + spawnRate + "\nWave Time Duration " + WaveTimer);
     }
     public void WaveEnd()
     {
@@ -89,7 +90,6 @@ public class WaveManager : MonoBehaviour {
             //    enemy.GetComponent<EnemyController>().ReturnToPool();
             //}
             Wave = new List<GameObject>();
-            ResourceManager.Resources += ResourceManager.TimeExpireReward;
         }
         WaveTimer = 0;
         //remove wave (would have used stack but inspector doesnt want to show it and I don't want to spend time on it)
@@ -109,12 +109,12 @@ public class WaveManager : MonoBehaviour {
         if (WaveTimer >= WaveTime)
         {
             //time limit reached wave despawned
-            ResourceManager.Resources += ResourceManager.TimeExpireReward;
+            GameManager.instance.resourceManager.AddTimeReward();
             Debug.Log("time up" + WaveTimer + " " + WaveTime);
             WaveEnd();
         }
         //spawns enemies
-        Debug.Log(ToBeSpawned);
+        //Debug.Log(ToBeSpawned + "eneimes to spawn\n" + spawnTimer + @"/" + spawnRate);
         if (ToBeSpawned > 0 && spawnTimer > spawnRate)
         {
             if (EnemySpawner.Spawn())

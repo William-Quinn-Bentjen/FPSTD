@@ -60,7 +60,7 @@ public class EnemyController : MonoBehaviour {
     {
         //go back to spawn pool
         ReturnToPool();
-        ResourceManager.AddKillReward();
+        GameManager.instance.resourceManager.AddKillReward();
         Debug.Log("Enemy Death");
     }
 }

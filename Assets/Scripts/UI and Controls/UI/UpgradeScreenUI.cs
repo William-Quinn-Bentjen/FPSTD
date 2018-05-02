@@ -12,11 +12,17 @@ public class UpgradeScreenUI : MonoBehaviour {
     public void UpdateCostText(float cost)
     {
         CostText.text = cost.ToString();
-        LeftoverResourcesText.text = (ResourceManager.Resources - cost).ToString();
+        LeftoverResourcesText.text = (GameManager.instance.resourceManager.Resources - cost).ToString();
     }
     void Awake()
     {
-        GameManager.instance.upgradeScreenUI = this;
-        instance = this;
+        if (GameManager.instance.upgradeScreenUI == null)
+        {
+            GameManager.instance.upgradeScreenUI = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

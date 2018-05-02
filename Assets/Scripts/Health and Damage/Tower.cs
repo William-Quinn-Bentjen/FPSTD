@@ -15,10 +15,32 @@ public class Tower : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         HP.OnDeath = Death;
-        GameManager.instance.tower = this;
-        GameManager.instance.towerHP = GetComponent<Health>();
+        if (GameManager.instance.tower == null)
+        {
+            GameManager.instance.tower = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        if (GameManager.instance.towerHP == null)
+        {
+            GameManager.instance.towerHP = GetComponent<Health>();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
         //OLD
-        TowerSliderUI.tower = this;
+        if (TowerSliderUI.tower == null)
+        {
+            TowerSliderUI.tower = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 	}
 	
 	// Update is called once per frame

@@ -1225,6 +1225,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842cf2ab803efa14d9d9c4e0f40ef630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Resources: 999
+  KillReward: 1
+  TimeExpireReward: 5
+  WaveEliminationReward: 10
 --- !u!1 &220508662
 GameObject:
   m_ObjectHideFlags: 0
@@ -2096,6 +2100,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4175235572404296, guid: 3cacc9b1504f3e046bf102e4aae0ff49,
     type: 2}
   m_PrefabInternal: {fileID: 1678640954}
+--- !u!1 &494812225 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1149739982178838, guid: fef1e2a49ec964a4e9209450faf1e979,
+    type: 2}
+  m_PrefabInternal: {fileID: 939827403}
 --- !u!1 &509278639
 GameObject:
   m_ObjectHideFlags: 0
@@ -2316,7 +2325,7 @@ MonoBehaviour:
   - {fileID: 1002508880}
   - {fileID: 624815585}
   - {fileID: 1592195923}
-  - {fileID: 1089638826}
+  - {fileID: 494812225}
 --- !u!114 &519993570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4488,6 +4497,10 @@ Prefab:
       propertyPath: randomSeed
       value: 852860277
       objectReference: {fileID: 0}
+    - target: {fileID: 1149739982178838, guid: fef1e2a49ec964a4e9209450faf1e979, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fef1e2a49ec964a4e9209450faf1e979, type: 2}
   m_IsPrefabParent: 0
@@ -5387,11 +5400,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1081094235}
---- !u!1 &1089638826 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1149739982178838, guid: fef1e2a49ec964a4e9209450faf1e979,
-    type: 2}
-  m_PrefabInternal: {fileID: 1652990301}
 --- !u!4 &1089638829 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4194283029723836, guid: fef1e2a49ec964a4e9209450faf1e979,
@@ -7948,7 +7956,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1149739982178838, guid: fef1e2a49ec964a4e9209450faf1e979, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4194283029723836, guid: fef1e2a49ec964a4e9209450faf1e979, type: 2}
       propertyPath: m_LocalScale.y

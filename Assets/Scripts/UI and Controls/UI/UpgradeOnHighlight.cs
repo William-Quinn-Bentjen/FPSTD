@@ -8,13 +8,27 @@ public class UpgradeOnHighlight : MonoBehaviour
 {
     public float Cost;
     public int UpgradeID;
+    public UpgradeManager.UpgradeType upgrade;
     public void SetCostValue()
     {
-        UpgradeScreenUI.instance.UpdateCostText(Cost);
+        GameManager.instance.upgradeScreenUI.UpdateCostText(Cost);
     }
     public void ResetCostValue()
     {
-        UpgradeScreenUI.instance.UpdateCostText(0);
+
+        foreach (Transform child in gameObject.transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+        GameManager.instance.upgradeScreenUI.UpdateCostText(0);
+    }
+    public void AttemptUpgrade()
+    {
+        float newBal = GameManager.instance.resourceManager.Resources - Cost;
+        if (newBal > 0 && GameManager.instance.upgradeManager.Upgrade(upgrade))
+        {
+            GameManager.instance.resourceManager.Resources = newBal;
+        }
     }
     //public void OnPointerEnter(PointerEventData eventData)
     //{
@@ -29,13 +43,4 @@ public class UpgradeOnHighlight : MonoBehaviour
 
     //   UpgradeScreenUI.instance.CostText.text = "0";
     //}
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

@@ -30,7 +30,7 @@ public class UpgradeManager : MonoBehaviour {
     }
     public float PriceCheck(float cost)
     {
-        return ResourceManager.Resources - cost;
+        return GameManager.instance.resourceManager.Resources - cost;
     }
     //used in inspector
     /*
@@ -138,7 +138,7 @@ public class UpgradeManager : MonoBehaviour {
         return false;
     }
     //was going to be used but can't be called in inspector (left anyway)
-    public void Upgrade(UpgradeType upgrade)
+    public bool Upgrade(UpgradeType upgrade)
     {
         if (upgrade == UpgradeType.FlashLight)
         {
@@ -152,6 +152,7 @@ public class UpgradeManager : MonoBehaviour {
         {
             GameManager.instance.towerHP.SetMaxHP(GameManager.instance.towerHP.maxHP * 1.1f, true);
         }
+        return true;
     }
     public void Upgrade(WeaponType type, UpgradeType upgrade)
     {

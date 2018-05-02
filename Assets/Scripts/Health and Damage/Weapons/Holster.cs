@@ -38,8 +38,22 @@ public class Holster : MonoBehaviour {
     }
     // Use this for initialization
     void Awake () {
-        GameManager.instance.holster = this;
-        GunController.GunHolster = this;
+        if (GameManager.instance.holster == null)
+        {
+            GameManager.instance.holster = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        if (GunController.GunHolster == null)
+        {
+            GunController.GunHolster = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         if (Selected != null)
         {
             SelectWeapon(Selected);

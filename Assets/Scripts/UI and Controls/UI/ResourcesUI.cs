@@ -11,7 +11,7 @@ public class ResourcesUI : MonoBehaviour {
     public string Suffix;
     public void UpdateResourcesUI()
     {
-        ResourceLabel.text = Prefix + ResourceManager.Resources + Suffix;
+        ResourceLabel.text = Prefix + GameManager.instance.resourceManager.Resources + Suffix;
     }
 	// Use this for initialization
 	void Start () {

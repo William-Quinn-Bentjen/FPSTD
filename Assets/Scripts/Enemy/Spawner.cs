@@ -57,9 +57,23 @@ public class Spawner : MonoBehaviour {
     }
 	// Use this for initialization
 	void Awake () {
-        WaveManager.EnemySpawner = this;
-        GameManager.instance.spawner = this;
-	}
+        if (WaveManager.EnemySpawner == null)
+        {
+            WaveManager.EnemySpawner = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        if (GameManager.instance.spawner == null)
+        {
+            GameManager.instance.spawner = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {

@@ -10,23 +10,25 @@ public class RepairTowerButton : MonoBehaviour {
     }
     public void SetCostValue()
     {
-        UpgradeScreenUI.instance.UpdateCostText(Cost);
+        GameManager.instance.upgradeScreenUI.UpdateCostText(Cost);
     }
     public void ResetCostValue()
     {
-        UpgradeScreenUI.instance.UpdateCostText(0);
+        GameManager.instance.upgradeScreenUI.UpdateCostText(0);
     }
     public void RepairTower()
     {
-        if (Cost <= ResourceManager.Resources)
+        if (Cost <= GameManager.instance.resourceManager.Resources)
         {
-            ResourceManager.Resources -= Cost;
+            GameManager.instance.resourceManager.Resources -= Cost;
             GameManager.instance.towerHP.SetHP(GameManager.instance.towerHP.maxHP);
         }
-        else if (Cost > ResourceManager.Resources)
+        else if (Cost > GameManager.instance.resourceManager.Resources)
         {
-            GameManager.instance.towerHP.Heal(ResourceManager.Resources);
-            ResourceManager.Resources = 0;
+            GameManager.instance.towerHP.Heal(GameManager.instance.resourceManager.Resources);
+            GameManager.instance.resourceManager.Resources = 0;
         }
+        UpdateCost();
+        ResourcesUI.UpdateResources.Invoke();
     }
 }

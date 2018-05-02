@@ -9,8 +9,6 @@ public enum WeaponType
 }
 public class GunController : MonoBehaviour {
     public bool enableInput = true;
-    //used for UI to have access to the named weapons below so it can tell what was selected easily
-    public static GunController instance;
     public static Holster GunHolster;
     
     public delegate void SelectAWeapon(WeaponType selected);
@@ -21,9 +19,8 @@ public class GunController : MonoBehaviour {
     public Pistol handgun;
     // Use this for initialization
     void Start () {
-        if (instance == null)
+        if (GameManager.instance.gunController == null)
         {
-            instance = this;
             GameManager.instance.gunController = this;
         }
         else

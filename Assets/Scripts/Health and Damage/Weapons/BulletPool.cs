@@ -8,7 +8,7 @@ public class BulletPool : MonoBehaviour
     void Awake()
     {
         BulletPoolInstance = GetComponent<ObjectPool>();
-        if (BulletPoolInstance != null)
+        if (BulletPoolInstance != null && GameManager.instance.bulletPool == null)
         {
             GameManager.instance.bulletPool = this;
         }

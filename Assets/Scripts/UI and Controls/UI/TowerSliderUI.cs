@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TowerSliderUI : MonoBehaviour {
-    public static TowerSliderUI instance;
+    //public static TowerSliderUI instance;
     public static Tower tower;
     //public static Health 
     public Slider slider;
@@ -29,14 +29,6 @@ public class TowerSliderUI : MonoBehaviour {
     }
 	// Use this for initialization
 	void Start () {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
         slider.maxValue = tower.HP.maxHP;
         slider.minValue = tower.HP.minHP;
         slider.value = tower.HP.HP;

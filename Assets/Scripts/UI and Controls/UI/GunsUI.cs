@@ -19,7 +19,15 @@ public class GunsUI : MonoBehaviour {
 	}
     void Awake()
     {
-        GunController.OnSelectWeapon = UpdateSelectedWeapon;
+        if (GunController.OnSelectWeapon == null)
+        {
+            GunController.OnSelectWeapon = UpdateSelectedWeapon;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+            
     }
 	void UpdateSelectedWeapon(WeaponType type)
     {
@@ -57,12 +65,4 @@ public class GunsUI : MonoBehaviour {
         }
         
     }
-    void SelectWeapon()
-    {
-
-    }
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

@@ -6,7 +6,7 @@ public class EnemyPool : MonoBehaviour {
     void Start()
     {
         ObjectPool EnemyPoolInstance = GetComponent<ObjectPool>();
-        if (EnemyPoolInstance != null)
+        if (EnemyPoolInstance != null && GameManager.instance.enemyPool == null)
         {
             GameManager.instance.enemyPool = EnemyPoolInstance;
         }

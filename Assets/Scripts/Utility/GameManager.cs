@@ -68,18 +68,15 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+    //note this is here just because if StartWave is called on awake or start it won't work correctly
     bool isStared = false;
     void Update()
     {
         if (!isStared)
         {
+            isStared = true;
             upgradeScreenUI.enabled = false;
             StartWave();
         }
-    }
-    void Start()
-    {
-        //UpgradeScreenUI.instance.enabled = false;
-        //StartWave();
     }
 }
