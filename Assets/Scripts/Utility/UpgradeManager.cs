@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour {
+    public ResourcesUI resourcesUI;
     public GameObject Laser;
     public List<GameObject> Fires = new List<GameObject>();
     public enum UpgradeType
@@ -20,6 +21,21 @@ public class UpgradeManager : MonoBehaviour {
         Fires,
         LaserSight,
         TowerStructure
+            //
+        //Pistol Damage,
+        //Pistol Mag,
+        //Pistol Reload,
+        //Rifle Damage,
+        //Rifle Mag,
+        //Rifle Reload,
+        //Shotgun Damage,
+        //Shotgun Mag,
+        //Shotgun Reload,
+        // Shotgun Pellets,
+        // Tower Structure,
+        // Fires,
+        // Laser,
+        // Repair Tower,
     }
     void Start()
     {
@@ -32,6 +48,8 @@ public class UpgradeManager : MonoBehaviour {
         if (PriceCheck(info.Cost) >= 0)
         {
             Upgrade(info.UpgradeID);
+            GameManager.instance.resourceManager.Resources -= info.Cost;
+            resourcesUI.UpdateResourcesUI();
         }
     }
     public float PriceCheck(float cost)
@@ -114,7 +132,7 @@ public class UpgradeManager : MonoBehaviour {
             case 11:
                 {
                     //up tower hp
-                    GameManager.instance.towerHP.SetMaxHP(GameManager.instance.towerHP.maxHP + 30, true);
+                    GameManager.instance.towerHP.SetMaxHP(GameManager.instance.towerHP.maxHP + 30);
                     return true;
                 }
             case 12:
@@ -126,6 +144,7 @@ public class UpgradeManager : MonoBehaviour {
                         {
                             Fire.SetActive(true);
                         }
+                        UpgradedFires = true;
                         return true;
                     }
                     return false;
@@ -136,7 +155,17 @@ public class UpgradeManager : MonoBehaviour {
                     if (UpgradedLasers == false)
                     {
                         Laser.SetActive(true);
+                        UpgradedLasers = true;
                         return true;
+                    }
+                    return false;
+                }
+            case 14:
+                {
+                    Health towerHP = GameManager.instance.towerHP;
+                    if (towerHP != null && towerHP.HP < towerHP.maxHP)
+                    {
+                        towerHP.HP = towerHP.maxHP;
                     }
                     return false;
                 }

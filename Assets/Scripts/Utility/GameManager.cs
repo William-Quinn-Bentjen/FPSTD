@@ -53,8 +53,6 @@ public class GameManager : MonoBehaviour {
         playerCamera.enableInput = false;
         gunController.enableInput = false;
         UpgradeScreen.enabled = true;
-        //used so the repair button only calculates it's cost when the wave ends instead of whenever a mouse enters or exits the button
-        upgradeScreenUI.RepairButton.UpdateCost();
     }
     //Monobehavior functions
     void Awake()

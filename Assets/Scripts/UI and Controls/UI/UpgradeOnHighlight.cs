@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UpgradeOnHighlight : MonoBehaviour
 {
@@ -26,10 +27,13 @@ public class UpgradeOnHighlight : MonoBehaviour
     {
         float newBal = GameManager.instance.resourceManager.Resources - Cost;
         //newbal is evaluated first so upgrade will only be called if they can actually afford it 
-        if (newBal > 0 && GameManager.instance.upgradeManager.Upgrade(upgrade))
+        if (newBal > 0 && GameManager.instance.upgradeManager.Upgrade(UpgradeID))
         {
             //they will only be charged if they can buy it and the upgrade was successful
+            UpgradeScreenUI.instance.BeginFadeBalanceAndCost();
             GameManager.instance.resourceManager.Resources = newBal;
+            ResourcesUI.Instance.UpdateResourcesUI();
+            SetCostValue();
         }
     }
     //public void OnPointerEnter(PointerEventData eventData)

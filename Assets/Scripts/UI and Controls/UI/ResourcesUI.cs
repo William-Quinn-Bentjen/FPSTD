@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ResourcesUI : MonoBehaviour {
     public delegate void UpdateResourcesText();
+    public static ResourcesUI Instance;
     public static UpdateResourcesText UpdateResources;
     public Text ResourceLabel;
     public string Prefix;
@@ -15,12 +16,8 @@ public class ResourcesUI : MonoBehaviour {
     }
 	// Use this for initialization
 	void Start () {
+        Instance = this;
         UpdateResources = UpdateResourcesUI;
         UpdateResourcesUI();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }

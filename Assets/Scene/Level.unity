@@ -247,12 +247,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519993569}
-        m_MethodName: Upgrade
-        m_Mode: 2
+      - m_Target: {fileID: 18536302}
+        m_MethodName: AttemptUpgrade
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 18536302}
-          m_ObjectArgumentAssemblyTypeName: UpgradeOnHighlight, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -648,12 +648,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519993569}
-        m_MethodName: Upgrade
-        m_Mode: 2
+      - m_Target: {fileID: 90843410}
+        m_MethodName: AttemptUpgrade
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 90843410}
-          m_ObjectArgumentAssemblyTypeName: UpgradeOnHighlight, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1520,7 +1520,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shogtun
+  m_Text: Shotgun
 --- !u!222 &241329125
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2246,12 +2246,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519993569}
-        m_MethodName: Upgrade
-        m_Mode: 2
+      - m_Target: {fileID: 509278642}
+        m_MethodName: AttemptUpgrade
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 509278642}
-          m_ObjectArgumentAssemblyTypeName: UpgradeOnHighlight, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2323,6 +2323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e622658af2e4d024e986e906023fb1b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resourcesUI: {fileID: 814134508}
   Laser: {fileID: 1575021465}
   Fires:
   - {fileID: 1002508880}
@@ -2340,12 +2341,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c797e826d944549b3bb4b747c0708c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RepairButton: {fileID: 571003287}
   BalanceBackground: {fileID: 2130864650}
+  CostBackground: {fileID: 947464023}
   CanAffordColor: {r: 0, g: 1, b: 0, a: 0.02745098}
   CantAffordColor: {r: 1, g: 0, b: 0, a: 0.209}
   CostText: {fileID: 798679619}
   LeftoverResourcesText: {fileID: 1830242536}
+  fadeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0.64374995
+      outSlope: 0.64374995
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.43295515
+      value: 0.9697731
+      inSlope: 1.180768
+      outSlope: 0.5035205
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 0.8343042
+      value: 0.98375
+      inSlope: -0.033489052
+      outSlope: -0.08449299
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: -18.817286
+      outSlope: 0
+      tangentMode: 1
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  fadeTime: 0.2
 --- !u!114 &519993571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2849,8 +2881,8 @@ GameObject:
   - component: {fileID: 571003285}
   - component: {fileID: 571003284}
   - component: {fileID: 571003283}
-  - component: {fileID: 571003287}
   - component: {fileID: 571003286}
+  - component: {fileID: 571003287}
   m_Layer: 0
   m_Name: RepairTowerButton
   m_TagString: Untagged
@@ -2917,7 +2949,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 571003287}
-        m_MethodName: RepairTower
+        m_MethodName: AttemptUpgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3017,9 +3049,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 571003281}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f908234e7acddfe428499159bdea48df, type: 3}
+  m_Script: {fileID: 11500000, guid: e71b610e9215a704cb3e3b431450fc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cost: 100
+  UpgradeID: 14
+  upgrade: 12
 --- !u!1 &580098670
 GameObject:
   m_ObjectHideFlags: 0
@@ -3307,12 +3342,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519993569}
-        m_MethodName: Upgrade
-        m_Mode: 2
+      - m_Target: {fileID: 622022484}
+        m_MethodName: AttemptUpgrade
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 622022484}
-          m_ObjectArgumentAssemblyTypeName: UpgradeOnHighlight, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3929,12 +3964,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519993569}
-        m_MethodName: Upgrade
-        m_Mode: 2
+      - m_Target: {fileID: 763115270}
+        m_MethodName: AttemptUpgrade
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 763115270}
-          m_ObjectArgumentAssemblyTypeName: UpgradeOnHighlight, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4721,12 +4756,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519993569}
-        m_MethodName: Upgrade
-        m_Mode: 2
+      - m_Target: {fileID: 949550164}
+        m_MethodName: AttemptUpgrade
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 949550164}
-          m_ObjectArgumentAssemblyTypeName: UpgradeOnHighlight, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5725,12 +5760,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519993569}
-        m_MethodName: Upgrade
-        m_Mode: 2
+      - m_Target: {fileID: 1203327543}
+        m_MethodName: AttemptUpgrade
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1203327543}
-          m_ObjectArgumentAssemblyTypeName: UpgradeOnHighlight, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5990,12 +6025,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519993569}
-        m_MethodName: Upgrade
-        m_Mode: 2
+      - m_Target: {fileID: 1239562438}
+        m_MethodName: AttemptUpgrade
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1239562438}
-          m_ObjectArgumentAssemblyTypeName: UpgradeOnHighlight, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6786,12 +6821,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519993569}
-        m_MethodName: Upgrade
-        m_Mode: 2
+      - m_Target: {fileID: 1427332844}
+        m_MethodName: AttemptUpgrade
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1427332844}
-          m_ObjectArgumentAssemblyTypeName: UpgradeOnHighlight, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7259,12 +7294,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519993569}
-        m_MethodName: Upgrade
-        m_Mode: 2
+      - m_Target: {fileID: 1515068144}
+        m_MethodName: AttemptUpgrade
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1515068144}
-          m_ObjectArgumentAssemblyTypeName: UpgradeOnHighlight, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7887,12 +7922,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519993569}
-        m_MethodName: Upgrade
-        m_Mode: 2
+      - m_Target: {fileID: 1651775302}
+        m_MethodName: AttemptUpgrade
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1651775302}
-          m_ObjectArgumentAssemblyTypeName: UpgradeOnHighlight, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8140,12 +8175,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519993569}
-        m_MethodName: Upgrade
-        m_Mode: 2
+      - m_Target: {fileID: 1666481066}
+        m_MethodName: AttemptUpgrade
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1666481066}
-          m_ObjectArgumentAssemblyTypeName: UpgradeOnHighlight, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8814,12 +8849,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519993569}
-        m_MethodName: Upgrade
-        m_Mode: 2
+      - m_Target: {fileID: 1863228813}
+        m_MethodName: AttemptUpgrade
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1863228813}
-          m_ObjectArgumentAssemblyTypeName: UpgradeOnHighlight, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
